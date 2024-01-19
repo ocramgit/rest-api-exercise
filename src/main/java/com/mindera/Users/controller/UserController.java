@@ -42,4 +42,10 @@ public class UserController {
         return ResponseEntity.status(200).body(userService.updatePut(id, user.getName(), user.getPassword()));
     }
 
+    @GetMapping("/list")
+    public List<User> getUserList() {
+        return userService.getUserList();
+    }
+
+
 }

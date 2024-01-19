@@ -49,4 +49,7 @@ public class UserService {
         return user;
     }
 
+    public List<User> getUserList() {
+        return userRepository.findAll();
+    }
 }
