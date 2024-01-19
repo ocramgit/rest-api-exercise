@@ -47,5 +47,10 @@ public class UserController {
         return userService.getUserList();
     }
 
+    @DeleteMapping("{id}")
+    public void delete(@RequestParam (required = false) Integer id) {
+        userService.delete(id);
+    }
+
 
 }
