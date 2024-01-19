@@ -39,10 +39,10 @@ public class UserController {
 
     @PutMapping
     public ResponseEntity<User> updatePut(@RequestParam(required = false) Integer id, @RequestBody User user) {
-        return ResponseEntity.status(200).body(userService.updatePut(id, user.getName(), user.getPassword()));
+        return ResponseEntity.ok().body(userService.updatePut(id, user.getName(), user.getPassword()));
     }
 
-    @GetMapping("/list")
+    @GetMapping
     public List<User> getUserList() {
         return userService.getUserList();
     }

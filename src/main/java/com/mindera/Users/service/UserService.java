@@ -1,6 +1,7 @@
 package com.mindera.Users.service;
 
 import com.mindera.Users.domain.User;
+import com.mindera.Users.exceptions.UserNotFoundException;
 import com.mindera.Users.repository.UserRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -22,14 +23,17 @@ public class UserService {
     }
 
     public User getUserById(Integer id) {
+        if(id == null) throw new UserNotFoundException();
         return userRepository.getReferenceById(id);
     }
 
     public List<User> getUserByName(String name) {
+        if(name == null) throw new UserNotFoundException();
         return userRepository.findByName(name);
     }
 
     public User update(Integer id, String name, String password) {
+        if(id == null) throw new UserNotFoundException();
         User user = userRepository.getReferenceById(id);
 
         if (name != null) user.setName(name);
@@ -41,6 +45,7 @@ public class UserService {
     }
 
     public User updatePut(Integer id, String name, String password) {
+        if(id == null) throw new UserNotFoundException();
         User user = userRepository.getReferenceById(id);
 
         user.setName(name);
@@ -54,6 +59,7 @@ public class UserService {
     }
 
     public void delete(Integer id) {
+        if(id == null) throw new UserNotFoundException();
         userRepository.deleteById(id);
     }
 }
