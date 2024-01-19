@@ -22,24 +22,24 @@ public class UserController {
         return ResponseEntity.status(201).body(userService.create(user));
     }
 
-    @GetMapping("/name/{name}")
-    public List<User> getUserByName(@PathVariable String name) {
+    @GetMapping("{name}")
+    public List<User> getUserByName(@RequestParam(required = false) String name) {
         return userService.getUserByName(name);
     }
 
-    @GetMapping("/id/{id}")
-    public User getUserById(@PathVariable Integer id) {
+    @GetMapping("{id}")
+    public User getUserById(@RequestParam(required = false) Integer id) {
         return userService.getUserById(id);
     }
 
-    @PatchMapping("/update/{id}")
-    public ResponseEntity<User> update(@PathVariable Integer id, @RequestBody User user) {
+    @PatchMapping
+    public ResponseEntity<User> update(@RequestParam(required = false) Integer id , @RequestBody User user) {
         return ResponseEntity.status(200).body(userService.update(id, user.getName(), user.getPassword()));
     }
 
-    @PutMapping("/update/{id}")
-    public ResponseEntity<User> updatePut(@PathVariable Integer id, @RequestBody User user) {
-        return ResponseEntity.status(200).body(userService.update(id, user.getName(), user.getPassword()));
+    @PutMapping
+    public ResponseEntity<User> updatePut(@RequestParam(required = false) Integer id, @RequestBody User user) {
+        return ResponseEntity.status(200).body(userService.updatePut(id, user.getName(), user.getPassword()));
     }
 
 }

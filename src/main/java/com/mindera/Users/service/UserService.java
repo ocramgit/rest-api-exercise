@@ -35,6 +35,8 @@ public class UserService {
         if (name != null) user.setName(name);
         if (password != null) user.setPassword(password);
 
+        userRepository.save(user);
+
         return user;
     }
 
@@ -43,8 +45,6 @@ public class UserService {
 
         user.setName(name);
         user.setPassword(password);
-
-        userRepository.save(user);
 
         return user;
     }
