@@ -22,13 +22,13 @@ public class UserController {
         return ResponseEntity.status(201).body(userService.create(user));
     }
 
-    @GetMapping("{name}")
+    @GetMapping(params = "name")
     public List<User> getUserByName(@RequestParam(required = false) String name) {
         return userService.getUserByName(name);
     }
 
-    @GetMapping("{id}")
-    public User getUserById(@RequestParam(required = false) Integer id) {
+    @GetMapping("/{id}")
+    public User getUserById(@PathVariable Integer id) {
         return userService.getUserById(id);
     }
 
@@ -47,7 +47,7 @@ public class UserController {
         return userService.getUserList();
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping(params = "id")
     public void delete(@RequestParam (required = false) Integer id) {
         userService.delete(id);
     }
