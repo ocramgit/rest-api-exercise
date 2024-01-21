@@ -29,6 +29,10 @@ public class User implements Serializable {
     public User() {
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public Integer getId() {
         return id;
     }
