@@ -42,6 +42,11 @@ public class UserController {
         return ResponseEntity.ok().body(userService.updatePut(id, user.getName(), user.getPassword()));
     }
 
+    @GetMapping(params = "password")
+    public ResponseEntity<List<User>> getUserByPassword(@RequestParam(required = false) String password) {
+        return ResponseEntity.ok().body(userService.getUserByPassword(password));
+    }
+
     @GetMapping
     public List<User> getUserList() {
         return userService.getUserList();

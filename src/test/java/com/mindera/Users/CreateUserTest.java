@@ -46,9 +46,5 @@ public class CreateUserTest {
                 .andExpect(jsonPath("$.id").value(1))
                 .andExpect(jsonPath("$.name").value("User Example"))
                 .andExpect(jsonPath("$.password").value("Password Example"));
-
     }
-
-
-
 }

@@ -18,6 +18,7 @@ public class UserService {
     }
 
     public User create(User user) {
+        if(user.getName().isEmpty()) throw new UserNotFoundException();
         userRepository.save(user);
         return user;
     }
@@ -61,5 +62,9 @@ public class UserService {
     public void delete(Integer id) {
         if(id == null) throw new UserNotFoundException();
         userRepository.deleteById(id);
+    }
+
+    public List<User> getUserByPassword(String password) {
+        return userRepository.findByPassword(password);
     }
 }
