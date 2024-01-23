@@ -19,7 +19,7 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> create(@RequestBody User user) {
-        return ResponseEntity.status(201).body(userService.create(user));
+        return ResponseEntity.ok().body(userService.create(user));
     }
 
     @GetMapping(params = "name")

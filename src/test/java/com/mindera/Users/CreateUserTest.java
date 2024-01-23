@@ -34,8 +34,6 @@ public class CreateUserTest {
         user.setName("User Example");
         user.setPassword("Password Example");
 
-        when(userService.create(any(User.class))).thenReturn(user);
-
         ObjectMapper objectMapper = new ObjectMapper();
         String userObject = objectMapper.writeValueAsString(user);
 
