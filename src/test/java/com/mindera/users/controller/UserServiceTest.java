@@ -75,7 +75,6 @@ class UserServiceTest {
         Assertions.assertNotNull(userService.getUserByName("Marco"));
     }
 
-    //not working yet
     @Test
     void testUpdatePatchUserSuccess() {
             User user = new User(1, "Marco", "senha", "marco@email.com", new Address());
@@ -86,6 +85,13 @@ class UserServiceTest {
             userUpdated.setName("Ricardo");
 
             userService.update(user.getId(), userUpdated);
-            assertEquals(userUpdated.getName(), user.getName());
+            assertEquals("Ricardo", user.getName());
+            assertEquals("senha", user.getPassword());
+            assertEquals("marco@email.com", user.getEmail());
+    }
+
+    @Test
+    void testUpdatePatchUser_notFound() {
+        Assertions.assertThrows(UserNotFoundException.class, () -> userService.update(new User().getId(), new User()));
     }
 }

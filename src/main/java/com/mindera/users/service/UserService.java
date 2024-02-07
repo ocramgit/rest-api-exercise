@@ -39,7 +39,6 @@ public class UserService {
     }
 
     public User update(Integer id, User user) {
-        if (user.getName() == null || user.getPassword() == null) throw new EmptyFieldException();
         Optional<User> userToUpdate = userRepository.findById(id);
         if (userToUpdate.isEmpty()) throw new UserNotFoundException();
 
