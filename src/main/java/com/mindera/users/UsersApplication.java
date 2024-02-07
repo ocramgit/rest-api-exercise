@@ -1,6 +1,5 @@
-package com.mindera.Users;
+package com.mindera.users;
 
-import org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

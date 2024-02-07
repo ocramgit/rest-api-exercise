@@ -1,0 +1,41 @@
+version: "3.9"
+
+networks:
+  default_net:
+    name: default_net
+    driver: bridge
+
+volumes:
+  database-store:
+    driver: local
+  sonarqube_data:
+  sonarqube_extensions:
+  sonarqube_logs:
+  postgresql:
+  postgresql_data:
+
+services:
+  database:
+    image: postgres:13
+    container_name: database-api
+    volumes:
+      - ~/.docker-conf/postgres/data/:/var/lib/postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: catarina
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: users_db
+    networks:
+      - default_net
+
+  redis:
+    image: redis:6.2.6
+    container_name: redis_api
+    ports:
+      - 6379:6379
+    command: redis-server --save 20 1 --loglevel warning
+    volumes:
+      - database-store:/redis
+    networks:
+      - default_net

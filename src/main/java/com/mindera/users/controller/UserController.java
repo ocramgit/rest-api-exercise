@@ -1,7 +1,8 @@
-package com.mindera.Users.controller;
+package com.mindera.users.controller;
 
-import com.mindera.Users.domain.User;
-import com.mindera.Users.service.UserService;
+import com.mindera.users.domain.User;
+import com.mindera.users.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,12 +20,12 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> create(@RequestBody User user) {
-        return ResponseEntity.ok().body(userService.create(user));
+        return ResponseEntity.status(HttpStatus.CREATED).body(userService.create(user));
     }
 
-    @GetMapping(params = "name")
-    public List<User> getUserByName(@RequestParam(required = false) String name) {
-        return userService.getUserByName(name);
+    @GetMapping
+    public ResponseEntity<List<User>> getUserByName(@RequestParam(required = false) String name) {
+        return ResponseEntity.ok().body(userService.getUserByName(name));
     }
 
     @GetMapping("/{id}")
@@ -34,22 +35,12 @@ public class UserController {
 
     @PatchMapping
     public ResponseEntity<User> update(@RequestParam(required = false) Integer id , @RequestBody User user) {
-        return ResponseEntity.status(200).body(userService.update(id, user.getName(), user.getPassword()));
+        return ResponseEntity.ok().body(userService.update(id, user));
     }
 
     @PutMapping
     public ResponseEntity<User> updatePut(@RequestParam(required = false) Integer id, @RequestBody User user) {
         return ResponseEntity.ok().body(userService.updatePut(id, user.getName(), user.getPassword()));
-    }
-
-    @GetMapping(params = "password")
-    public ResponseEntity<List<User>> getUserByPassword(@RequestParam(required = false) String password) {
-        return ResponseEntity.ok().body(userService.getUserByPassword(password));
-    }
-
-    @GetMapping
-    public List<User> getUserList() {
-        return userService.getUserList();
     }
 
     @DeleteMapping(params = "id")
