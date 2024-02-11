@@ -43,12 +43,8 @@ public class UserController {
         return ResponseEntity.ok().body(userService.updatePut(id, user.getName(), user.getPassword()));
     }
 
-    @DeleteMapping(params = "id")
-    public ResponseEntity<String> delete(@RequestParam (required = false) Integer id) {
-        userService.delete(id);
-
-        return ResponseEntity.ok().body("User deleted.");
+    @GetMapping("/all")
+    public ResponseEntity<List<User>> getAllUsers() {
+        return ResponseEntity.ok().body(userService.getUserList());
     }
-
-
 }

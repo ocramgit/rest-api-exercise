@@ -37,7 +37,7 @@ class UserRepositoryTest {
 
     @Test
     void testCreateUser_userCreated_success() throws Exception {
-        User user = new User( "Marco", "Teste123", "marco@email.com", new Address());
+        User user = new User("Marco", "Teste123", "marco@email.com", new Address());
         when(userRepository.save(any(User.class))).thenReturn(user);
 
         ObjectMapper objectMapper = new ObjectMapper();
@@ -85,7 +85,7 @@ class UserRepositoryTest {
 
     @Test
     void testGetUserById_notFound_badRequest() throws Exception {
-                        when(userRepository.getReferenceById(8000)).thenReturn(null);
+        when(userRepository.getReferenceById(8000)).thenReturn(null);
 
         mockMvc.perform(get("/user/{id}", 7000))
                 .andExpect(status().isBadRequest());
@@ -213,5 +213,13 @@ class UserRepositoryTest {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(userObject))
                 .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void testGetAllUsers_success() throws Exception {
+        when(userRepository.findAll()).thenReturn(Collections.singletonList(new User()));
+
+        mockMvc.perform(get("/user/all"))
+                .andExpect(status().isOk());
     }
 }

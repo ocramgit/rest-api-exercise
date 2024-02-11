@@ -66,10 +66,4 @@ public class UserService {
     public List<User> getUserList() {
         return userRepository.findAll();
     }
-
-    public void delete(Integer id) {
-        if (id == null) throw new UserNotFoundException();
-        if (!userRepository.existsById(id)) throw new UserNotFoundException();
-        userRepository.deleteById(id);
-    }
 }
